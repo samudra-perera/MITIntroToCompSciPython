@@ -40,8 +40,8 @@ def choose_word(wordlist):
     
     Returns a word from wordlist at random
     """
-    # return random.choice(wordlist)
-    return 'tact'
+    return random.choice(wordlist)
+    # return 'tact'
 
 # end of helper code
 
@@ -262,24 +262,24 @@ def show_possible_matches(my_word):
     temp_word = ''
     list_of_solutions = []
 
+    #Remove spaces from guessed word
     for char in my_word:
         if(char == ' '):
             continue
         else:
             temp_word += char
 
-    print(temp_word)
-    print(len(temp_word))
-    print(temp_word[1])
-
+    #Iterate through word list
+    #If word lengths are equal iterate through to check if letters at same index are not equal
     for word in wordlist:
         if len(word) == len(temp_word):
+            word_not_in = False
             for n in range(len(word)):
-                if(my_word[n] == '_'):
-                    continue
-                elif(my_word[n] != word[n]):
+                if(temp_word[n] != word[n] and temp_word[n] != '_'):
+                    word_not_in = True
                     break
-            list_of_solutions.append(word)
+            if(word_not_in == False):
+                list_of_solutions.append(word)
       
     return list_of_solutions
             
@@ -330,6 +330,7 @@ def hangman_with_hints(secret_word):
 
       if(letter_selection == '*'):
           print(show_possible_matches(get_guessed_word(secret_word, letters_guessed)))
+          
       
       #Check if a character assume single char or of the player already guessed the letter
       if((letter_selection.isalpha() == False) and (letter_selection != '*')):
