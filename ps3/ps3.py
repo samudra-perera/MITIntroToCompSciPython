@@ -99,6 +99,8 @@ def get_word_score(word, n):
     word = word.lower()
 
     for letter in word:
+        if(letter == '*'):
+            continue
         letter_total += SCRABBLE_LETTER_VALUES[letter]
 
     #The second component
@@ -213,19 +215,50 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
 
+    #lowercase words and make copy of the hand
     word = word.lower()
     hand_copy = hand.copy()
+    index = word.find('*')
 
+    ##nsure that the player has all the letters to play the word in question
     for letter in word:
         if(hand_copy.get(letter) == 0 or hand_copy.get(letter) == None):
             return False
         elif(hand_copy.get(letter) >= 1):
             hand_copy[letter] -= 1
     
-     
-    for word_choice in word_list:
-        if(word_choice == word):
-            return True
+    #Check if the word includes the wild card character
+    if(index == -1): 
+        for word_choice in word_list:
+            if(word_choice == word):
+                return True
+    else:
+        for word_choice in word_list:
+            #Check if the length is the same
+            if(len(word_choice) == len(word)):
+                #Check letters in word_choice is equal to word
+                #And letters with the position asterisk is a vowel
+                counter = 0
+                #Check letters of that word
+                for i in range(len(word)):
+                    #if the letter in the word is an astericks, check if that coressponding letter 
+                    # in the word_choice is a vowel, else exit loop
+                    if(word[i] == '*'):
+                        if(VOWELS.find(word_choice[i]) != -1):
+                            counter += 1
+                            continue
+                        else:
+                            break
+                    #if the letters do not match at the corresponding indexes break the loop
+                    elif(word[i] != word_choice[i]):
+                        break
+                    #Add to the counter
+                    else:
+                        counter += 1
+                #if the counter length is equal to the len of the word then return True
+                #That means it satisfies all the necessary requirements
+                if(counter == len(word_choice)):
+                    return True 
 
     return False
 
