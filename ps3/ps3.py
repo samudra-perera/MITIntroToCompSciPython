@@ -14,6 +14,7 @@ import string
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
+WILDCARD = '*'
 
 SCRABBLE_LETTER_VALUES = {
     'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
@@ -152,6 +153,9 @@ def deal_hand(n):
     num_vowels = int(math.ceil(n / 3))
 
     for i in range(num_vowels):
+        if(i == num_vowels - 1):
+            hand['*'] = hand.get('*', 0) + 1
+            break 
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
     
@@ -185,7 +189,7 @@ def update_hand(hand, word):
 
     hand_copy = hand.copy()
     word = word.lower()
-    
+
     for letter in word:
         if(hand_copy.get(letter) == 0 or hand_copy.get(letter) == None): 
             continue
@@ -209,7 +213,21 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    word = word.lower()
+    hand_copy = hand.copy()
+
+    for letter in word:
+        if(hand_copy.get(letter) == 0 or hand_copy.get(letter) == None):
+            return False
+        elif(hand_copy.get(letter) >= 1):
+            hand_copy[letter] -= 1
+    
+     
+    for word_choice in word_list:
+        if(word_choice == word):
+            return True
+
+    return False
 
 #
 # Problem #5: Playing a hand
@@ -367,3 +385,4 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
+    deal_hand(HAND_SIZE)
