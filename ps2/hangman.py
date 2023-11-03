@@ -352,6 +352,8 @@ def hangman_with_hints(secret_word):
       if(letter_selection != '*'):
         letters_guessed.append(letter_selection)
       
+      #if guess was a vowel and was guessed wrong subtract 2 from the # of guesses
+      #Otherwise subtract 1 from # of guesses
       if letter_selection in 'aeiou':
           if letter_selection not in secret_word:
               num_of_guesses -= 2
