@@ -17,13 +17,13 @@ class Coordinate(object):
         return (x_diff_sq + y_diff_sq)**0.5
 
 
-c = Coordinate(3,4)
-origin = Coordinate(0,0)
-print(c.x, origin.x)
-print(c.distance(origin))
-print(Coordinate.distance(c, origin))
-print(origin.distance(c))
-print(c)
+# c = Coordinate(3,4)
+# origin = Coordinate(0,0)
+# print(c.x, origin.x)
+# print(c.distance(origin))
+# print(Coordinate.distance(c, origin))
+# print(origin.distance(c))
+# print(c)
 
 
 #################
@@ -67,7 +67,7 @@ print(c)
 print(float(c))
 print(Fraction.__float__(c))
 print(float(b.inverse()))
-##c = Fraction(3.14, 2.7) # assertion error
+#c = Fraction(3.14, 2.7) # assertion error
 ##print a*b # error, did not define how to multiply two Fraction objects
 
 
@@ -108,16 +108,16 @@ class intSet(object):
         return '{' + ','.join([str(e) for e in self.vals]) + '}'
 
 
-s = intSet()
-print(s)
-s.insert(3)
-s.insert(4)
-s.insert(3)
-print(s)
-s.member(3)
-s.member(5)
-s.insert(6)
-print(s)
-#s.remove(3)  # leads to an error
-print(s)
-s.remove(3)
+# s = intSet()
+# print(s)
+# s.insert(3)
+# s.insert(4)
+# s.insert(3)
+# print(s)
+# s.member(3)
+# s.member(5)
+# s.insert(6)
+# print(s)
+# #s.remove(3)  # leads to an error
+# print(s)
+# s.remove(3)
