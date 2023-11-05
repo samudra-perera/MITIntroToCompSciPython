@@ -53,6 +53,9 @@ def get_permutations(sequence):
 
 print(get_permutations('abc'))
 
+def test_permutations():
+    assert get_permutations('ab') == ['ab', 'ba'] 
+
 if __name__ == '__main__':
 #    #EXAMPLE
 #    example_input = 'abc'
@@ -64,5 +67,5 @@ if __name__ == '__main__':
 #    to be three characters or fewer as you will have n! permutations for a 
 #    sequence of length n)
 
-    pass #delete this line and replace with your code here
+    test_permutations()
 
