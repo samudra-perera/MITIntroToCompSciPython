@@ -49,23 +49,31 @@ def get_permutations(sequence):
     #1--> first call ['c] #base case
     #2--> second call, first recursive call results = ['bc', 'cb']
     #3--> third call, second recurisve call res = ['abc', 'bac', 'bca', 'acb', 'cab', 'cba']
-    return result
 
-print(get_permutations('abc'))
+    return list(set(result))
 
-def test_permutations():
-    assert get_permutations('ab') == ['ab', 'ba'] 
 
 if __name__ == '__main__':
-#    #EXAMPLE
+   #EXAMPLE
 #    example_input = 'abc'
 #    print('Input:', example_input)
 #    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
 #    print('Actual Output:', get_permutations(example_input))
+
+#    example_input = 'abb'
+#    print('Input', example_input)
+#    print('Expected_Output', ['abb', 'bab', 'bba'])
+#    print('Actual Output:', get_permutations(example_input))
+   
+    # # Example test case 2
+    # example_input = 'ab'
+    # print('Input:', example_input)
+    # print('Expected Output:', ['ab', 'ba'])
+    # print('Output:', get_permutations(example_input))
     
-#    # Put three example test cases here (for your sanity, limit your inputs
-#    to be three characters or fewer as you will have n! permutations for a 
-#    sequence of length n)
 
-    test_permutations()
-
+        # Example test case 5
+    example_input = 'sami'
+    print('Input:', example_input)
+    print('Output:', get_permutations(example_input))
+    print(len(get_permutations(example_input)))
