@@ -50,7 +50,7 @@ def get_permutations(sequence):
     #2--> second call, first recursive call results = ['bc', 'cb']
     #3--> third call, second recurisve call res = ['abc', 'bac', 'bca', 'acb', 'cab', 'cba']
 
-    return list(set(result))
+    return result
 
 
 if __name__ == '__main__':
